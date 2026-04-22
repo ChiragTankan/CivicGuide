@@ -1,0 +1,6 @@
+{
+  "name": "CivicGuide",
+  "description": "An interactive, strictly non-partisan educational assistant helping citizens understand election processes, timelines, and terminology.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
