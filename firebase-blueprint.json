@@ -1,0 +1,55 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Represents a citizen using the app.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "lastActive": { "type": "number" }
+      },
+      "required": ["id", "email"]
+    },
+    "Chat": {
+      "title": "Chat",
+      "description": "A conversation session.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "createdAt": { "type": "number" },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["id", "userId", "createdAt"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "A single message in a chat.",
+      "type": "object",
+      "properties": {
+        "chatId": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "model"] },
+        "content": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["chatId", "role", "content", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles."
+    },
+    "/chats/{chatId}": {
+      "schema": "Chat",
+      "description": "Chat metadata."
+    },
+    "/chats/{chatId}/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Chat messages."
+    }
+  }
+}

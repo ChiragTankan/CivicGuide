@@ -45,20 +45,20 @@ export default function JargonBuster() {
   );
 
   return (
-    <div className="space-y-10 max-w-5xl mx-auto">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/5 pb-10">
+    <div className="space-y-12 max-w-5xl mx-auto">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-slate-200 pb-12">
         <div className="space-y-2">
-          <h2 className="text-4xl font-black text-white tracking-tighter uppercase italic">Civic Lexicon</h2>
-          <p className="text-slate-400 font-medium">Decoding complex electoral terminology through relational analogies.</p>
+          <h2 className="text-4xl font-black text-slate-900 tracking-tighter uppercase italic">Civic Lexicon</h2>
+          <p className="text-slate-500 font-medium">Objective definitions of electoral terminology with cross-referenced analogies.</p>
         </div>
         <div className="relative group min-w-[320px]">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-indigo-400 transition-colors" size={20} />
+          <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-600 transition-colors" size={20} />
           <input
             type="text"
-            placeholder="FILTER TERMINOLOGY..."
+            placeholder="FILTER REGISTRY..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-12 pr-4 py-4 bg-white/5 border border-white/5 rounded-2xl focus:ring-2 focus:ring-indigo-500/50 focus:bg-white/[0.08] outline-none w-full transition-all text-xs font-black tracking-widest text-white uppercase placeholder:text-slate-600"
+            className="pl-14 pr-6 py-5 bg-white border border-slate-200 rounded-3xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 outline-none w-full transition-all text-xs font-black tracking-widest text-slate-900 uppercase placeholder:text-slate-300 shadow-sm"
           />
         </div>
       </div>
@@ -69,25 +69,26 @@ export default function JargonBuster() {
             key={item.term}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: index * 0.05, duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-            className="bg-[#111] p-6 rounded-3xl border border-white/5 group hover:border-indigo-500/30 transition-all duration-300"
+            transition={{ delay: index * 0.05, duration: 0.5 }}
+            className="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-lg shadow-slate-200/40 group hover:border-blue-500/30 transition-all duration-300"
           >
-            <div className="flex items-start gap-6">
-              <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center flex-shrink-0 text-slate-400 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-500">
-                <BookOpen size={24} />
+            <div className="flex items-start gap-8">
+              <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center flex-shrink-0 text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500 shadow-inner">
+                <BookOpen size={28} />
               </div>
               <div className="space-y-4 flex-1">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-xl font-black text-white italic tracking-tight uppercase group-hover:text-indigo-400 transition-colors">{item.term}</h3>
-                  <div className="h-px flex-1 mx-6 bg-white/5 hidden sm:block" />
-                  <span className="text-[10px] font-black text-slate-600 uppercase tracking-[0.2em]">Defined_Record</span>
+                  <h3 className="text-2xl font-black text-slate-900 italic tracking-tight uppercase group-hover:text-blue-600 transition-colors">{item.term}</h3>
+                  <div className="hidden sm:flex items-center gap-2 text-[10px] font-black text-slate-400 uppercase tracking-widest bg-slate-50 px-3 py-1 rounded-full">
+                    <span className="w-1 h-1 bg-slate-300 rounded-full" />
+                    Verified_Term
+                  </div>
                 </div>
-                <p className="text-slate-400 text-sm leading-relaxed font-medium">{item.definition}</p>
-                <div className="bg-indigo-500/5 p-5 rounded-2xl border border-indigo-500/10 flex gap-4 items-start relative group/analogy">
-                  <div className="absolute inset-0 bg-indigo-500/[0.02] opacity-0 group-hover/analogy:opacity-100 transition-opacity rounded-2xl" />
-                  <Lightbulb size={20} className="text-indigo-400 flex-shrink-0 mt-0.5 animate-pulse" />
-                  <p className="text-xs text-indigo-200 leading-relaxed z-10 relative">
-                    <span className="font-black uppercase tracking-widest text-indigo-400 mr-2">Operational Analogy:</span> {item.analogy}
+                <p className="text-slate-600 text-base leading-relaxed font-bold">{item.definition}</p>
+                <div className="bg-blue-50/50 p-6 rounded-3xl border border-blue-100 flex gap-5 items-start relative group/analogy">
+                  <Lightbulb size={24} className="text-amber-500 flex-shrink-0 mt-0.5 animate-bounce" />
+                  <p className="text-sm text-slate-700 leading-relaxed font-medium">
+                    <span className="font-black uppercase tracking-widest text-blue-600 mr-2 text-[11px]">Relational Analogy:</span> {item.analogy}
                   </p>
                 </div>
               </div>
@@ -95,9 +96,9 @@ export default function JargonBuster() {
           </motion.div>
         ))}
         {filteredTerms.length === 0 && (
-          <div className="text-center py-20 bg-white/5 rounded-3xl border border-dashed border-white/10">
-            <p className="text-slate-500 font-black uppercase tracking-widest text-xs mb-2">No matching records found</p>
-            <p className="text-[10px] text-slate-600 font-bold">Try searching for broader keywords in our registry.</p>
+          <div className="text-center py-24 bg-white rounded-[3rem] border-2 border-dashed border-slate-200">
+            <p className="text-slate-400 font-bold uppercase tracking-widest text-sm mb-2">Registry Access Failed</p>
+            <p className="text-xs text-slate-300 font-bold">No records matching your query were found in the current dataset.</p>
           </div>
         )}
       </div>

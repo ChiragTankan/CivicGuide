@@ -40,20 +40,27 @@ export async function* sendMessageStream(messages: any[]) {
   const genAI = getAI();
   const model = "gemini-3-flash-preview";
 
-  const stream = await genAI.models.generateContentStream({
-    model,
-    contents: messages,
-    config: {
-      systemInstruction: SYSTEM_INSTRUCTION,
-      temperature: 0.7,
-      tools: [{ googleSearch: {} }]
-    },
-  });
+  console.log("Sending message stream to Gemini...", { messageCount: messages.length });
 
-  for await (const chunk of stream) {
-    if (chunk.text) {
-      yield chunk.text;
+  try {
+    const stream = await genAI.models.generateContentStream({
+      model,
+      contents: messages,
+      config: {
+        systemInstruction: SYSTEM_INSTRUCTION,
+        temperature: 0.7,
+        tools: [{ googleSearch: {} }]
+      },
+    });
+
+    for await (const chunk of stream) {
+      if (chunk.text) {
+        yield chunk.text;
+      }
     }
+  } catch (error) {
+    console.error("Gemini stream error:", error);
+    throw error;
   }
 }
 
