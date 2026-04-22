@@ -32,7 +32,7 @@ export default function App() {
   ];
 
   return (
-    <div className="flex h-screen bg-slate-50 overflow-hidden">
+    <div className="flex bg-slate-50 overflow-hidden h-[100dvh] w-full">
       {/* Mobile Sidebar Overlay */}
       <AnimatePresence>
         {isSidebarOpen && (
@@ -153,8 +153,8 @@ export default function App() {
         </header>
 
         {/* Content Area */}
-        <div className="flex-1 overflow-y-auto overflow-x-hidden p-6 lg:p-10">
-          <div className="max-w-6xl mx-auto h-full">
+        <div className="flex-1 overflow-y-auto overflow-x-hidden p-0 sm:p-6 lg:p-10">
+          <div className="max-w-6xl mx-auto h-full px-4 sm:px-0 py-4 sm:py-0">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentView}

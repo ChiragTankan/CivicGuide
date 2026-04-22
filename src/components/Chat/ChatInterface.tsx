@@ -82,7 +82,7 @@ export default function ChatInterface() {
   };
 
   return (
-    <div id="chat-container" className="flex flex-col h-full bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+    <div id="chat-container" className="flex flex-col h-full bg-white sm:rounded-2xl shadow-sm border-x sm:border border-slate-200 overflow-hidden -mx-4 sm:mx-0">
       {/* Disclaimer Header */}
       <div className="bg-amber-50 px-4 py-2 border-b border-amber-100 flex items-center gap-2 text-xs text-amber-800">
         <Info size={14} className="flex-shrink-0" />
@@ -135,15 +135,15 @@ export default function ChatInterface() {
       </div>
 
       {/* Input Area */}
-      <div className="p-4 bg-white border-t border-slate-100">
+      <div className="p-3 sm:p-4 bg-white border-t border-slate-100">
         <div className="relative max-w-3xl mx-auto">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-            placeholder="Ask about voting, timelines, or terminology..."
-            className="w-full pl-4 pr-12 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all placeholder:text-slate-400"
+            placeholder="Ask anything..."
+            className="w-full pl-4 pr-12 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all placeholder:text-slate-400 text-sm sm:text-base"
           />
           <button
             onClick={handleSend}
